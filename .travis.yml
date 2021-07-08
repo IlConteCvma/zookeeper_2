@@ -1,0 +1,32 @@
+language: java
+
+matrix:
+  include:
+    - os: linux
+      arch: arm64
+      jdk: openjdk11
+      
+
+cache:
+  directories:
+  - "$HOME/.m2"
+
+addons:
+  apt:
+    packages:
+    - libcppunit-dev
+
+install:
+  - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
+     sudo apt-get install maven;
+    fi
+
+addons: 
+    sonarcloud: 
+        organization: ilcontecvma
+        token: 
+            606abcd2f2727f938255909f272e0be7e38e88d9
+
+script: 
+    - mvn clean test -Pcoverage
+    - mvn sonar:sonar -Dsonar.projectKey=IlConteCvma_zookeeper_2 -Dmaven.javadoc.skip=true
