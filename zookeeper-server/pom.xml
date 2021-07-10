@@ -38,6 +38,14 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.pitest</groupId>
+      <artifactId>pitest-maven</artifactId>
+      <version>1.5.1</version>
+      <type>maven-plugin</type>
+    </dependency>
+
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
@@ -262,6 +270,26 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.5.1</version>
+        <configuration>
+          <maxMutationsPerClass>30</maxMutationsPerClass>
+          <targetClasses>
+            <param>org.apache.zookeeper.ZooKeeper</param>
+            <param>org.apache.zookeeper.server.quorum.QuorumPeer</param>
+          </targetClasses>
+          <targetTests>
+            <param>org.apache.zookeeper.MyCreateTest</param>
+            <param>org.apache.zookeeper.MyDeleteAsyncTest</param>
+            <param>org.apache.zookeeper.MyPathValidationTest</param>
+            <param>org.apache.zookeeper.server.quorum.MyQuorumTest</param>
+          </targetTests>
+        </configuration>
+      </plugin>
+
      </plugins>
   </build>
 

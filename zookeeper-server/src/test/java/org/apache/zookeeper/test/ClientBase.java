@@ -70,8 +70,7 @@ public abstract class ClientBase extends ZKTestCase {
     protected static final Logger LOG = LoggerFactory.getLogger(ClientBase.class);
 
     public static int CONNECTION_TIMEOUT = 30000;
-    static final File BASETEST =
-        new File(System.getProperty("build.test.dir", "build"));
+
 
 
     protected String hostPort = "127.0.0.1:" + PortAssignment.unique();
@@ -371,11 +370,11 @@ public abstract class ClientBase extends ZKTestCase {
     }
 
     public static File createEmptyTestDir() throws IOException {
-        return createTmpDir(BASETEST, false);
+        return createTmpDir(testBaseDir, false);
     }
 
     public static File createTmpDir() throws IOException {
-        return createTmpDir(BASETEST, true);
+        return createTmpDir(testBaseDir, true);
     }
 
     static File createTmpDir(File parentDir, boolean createInitFile) throws IOException {
@@ -520,7 +519,7 @@ public abstract class ClientBase extends ZKTestCase {
 
         setUpAll();
 
-        tmpDir = createTmpDir(BASETEST, true);
+        tmpDir = createTmpDir(testBaseDir, true);
 
         startServer(serverId);
 

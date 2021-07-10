@@ -31,7 +31,7 @@ public class MyDeleteAsyncTest extends ClientBase {
                 {"/fake",-1},   //KeeperException with error code KeeperException.NoNode
                 {"/test",-1},   // KeeperException with error code KeeperException.NotEmpty
                 // add after coverage analysis
-                {"/",-1}
+                //{"/",-1}
         });
     }
 

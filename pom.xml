@@ -61,7 +61,7 @@
     <module>zookeeper-server</module>
     <module>zookeeper-client</module>
     <module>zookeeper-recipes</module>
-    <module>zookeeper-assembly</module>
+
     <module>jacoco-aggregate-report</module>
   </modules>
 
@@ -506,22 +506,27 @@
         </plugin>
 
 
-        <!--
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-plugin.version}</version>
           <configuration>
-            <argLine>${argLine}-Xmx2G -Djava.net.preferIPv4Stack=true -Dio.netty.leakDetection.level=paranoid</argLine>
+            <argLine>-Xmx2G -Djava.net.preferIPv4Stack=true -Dio.netty.leakDetection.level=paranoid</argLine>
             <redirectTestOutputToFile>${redirectTestOutputToFile}</redirectTestOutputToFile>
             <forkCount>${forkCount.variable}</forkCount>
             <reuseForks>false</reuseForks>
             <forkedProcessTimeoutInSeconds>1800</forkedProcessTimeoutInSeconds>
-            <rerunFailingTestsCount>${testRetryCount}</rerunFailingTestsCount>
+            <systemPropertyVariables>
+              <build.test.dir>${project.build.directory}/surefire</build.test.dir>
+              <zookeeper.DigestAuthenticationProvider.superDigest>super:D/InIHSb7yEEbrWz8b9l71RjZJU=</zookeeper.DigestAuthenticationProvider.superDigest>
+            </systemPropertyVariables>
+            <testFailureIgnore>true</testFailureIgnore>
+
           </configuration>
 
         </plugin>
-        -->
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
