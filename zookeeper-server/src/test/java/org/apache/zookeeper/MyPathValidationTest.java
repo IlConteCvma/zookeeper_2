@@ -63,12 +63,12 @@ public class MyPathValidationTest extends ClientBase {
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidPath() throws InterruptedException, KeeperException {
-        zk.create(invalidPath, "don't-care".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        zk.create(invalidPath, "don't-care".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
     }
 
     @Test
     public void testValidPath() throws InterruptedException, KeeperException {
-        zk.create(validPath, "don't-care".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        zk.create(validPath, "don't-care".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
         List<String> children = zk.getChildren("/", false);
         assertTrue(children.contains(extractName(validPath)));
 

@@ -1502,7 +1502,7 @@ public class ZooKeeper implements AutoCloseable {
      * @param data
      *                the initial data for the node
      * @param acl
-     *                the acl for the node
+     *                the aclcreate for the node
      * @param createMode
      *                specifying whether the node to be created is ephemeral
      *                and/or sequential
