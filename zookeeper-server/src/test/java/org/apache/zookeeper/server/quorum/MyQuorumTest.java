@@ -34,8 +34,11 @@ public class MyQuorumTest  {
                 * Leader Election boolean always false in this test because there isn't a real election phase
                 * */
                 {false,0L,0L,0L,false},
+                {true,0L,0L,0L,false},
                 {true,1L,0L,0L,false},
+                {true,1L,0L,1L,false},
                 {true,1L,1L,1L,false},
+                {true,1L,-1L,-1L,false},
                 {true,1L,null,null,false}
 
         });
@@ -56,7 +59,7 @@ public class MyQuorumTest  {
             peer = new QuorumPeer();
             QuorumVerifier mockQuorumVr = mock(QuorumVerifier.class);
             when(mockQuorumVr.getVersion()).thenReturn(0L);
-            //setup a possible state for
+
             peer.setQuorumVerifier(mockQuorumVr,false);
             peer.setCurrentVote(new Vote(0L,0L));
             /*
